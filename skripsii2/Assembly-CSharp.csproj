@@ -53,10 +53,17 @@
     <UnityVersion>2020.3.36f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Movement.cs" />
-    <Compile Include="Assets\Script\CameraFollowing.cs" />
-    <Compile Include="Assets\Script\MouseGetItem.cs" />
     <Compile Include="Assets\Script\ItemList.cs" />
+    <Compile Include="Assets\Script\GateCon.cs" />
+    <Compile Include="Assets\Script\MouseGetItem.cs" />
+    <Compile Include="Assets\Script\Movement.cs" />
+    <Compile Include="Assets\Script\Triggergate.cs" />
+    <Compile Include="Assets\Script\Closenote.cs" />
+    <Compile Include="Assets\Script\PageNumber.cs" />
+    <Compile Include="Assets\Script\CameraFollowing.cs" />
+    <Compile Include="Assets\Script\BookMenu.cs" />
+    <Compile Include="Assets\Script\GateFinish.cs" />
+    <Compile Include="Assets\Script\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
