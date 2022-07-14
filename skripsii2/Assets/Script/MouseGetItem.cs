@@ -7,8 +7,10 @@ public class MouseGetItem : MonoBehaviour
 {
     Vector3 mousePos;
     public GameObject[] gameobjects;
+    public BookMenu BM;
     public GameObject Rustedkey;
     public int key = 1;
+    public int totalkeyGet=0;
     public GateCon GC;
     public GameObject go;
     public GameObject note1;
@@ -38,11 +40,17 @@ public class MouseGetItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(totalkeyGet==4)
+        {
+            BM.changeBoolean(3);
+        }
+        
         for (var i = 0; i < Input.touchCount; ++i)
         {
             if (Input.GetTouch(i).phase == TouchPhase.Began)
             {
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
                 if (hit.transform.gameObject.tag == "Item")
@@ -51,24 +59,28 @@ public class MouseGetItem : MonoBehaviour
                     {
                         gameobjects[index] = il.gameobjects[0];
                         gm[0].SetActive(true);
+                        totalkeyGet++;
                         index++;
                     }
                     if (hit.transform.gameObject.name == "KunciBeta")
                     {
                         gameobjects[index] = il.gameobjects[1];
                         gm[1].SetActive(true);
+                        totalkeyGet++;
                         index++;
                     }
                     if (hit.transform.gameObject.name == "KunciGamma")
                     {
                         gameobjects[index] = il.gameobjects[2];
                         gm[2].SetActive(true);
+                        totalkeyGet++;
                         index++;
                     }
                     if (hit.transform.gameObject.name == "KunciDelta")
                     {
                         gameobjects[index] = il.gameobjects[3];
                         gm[3].SetActive(true);
+                        totalkeyGet++;
                         index++;
                     }
                     if (hit.transform.gameObject.name == "RustedKey" || hit.transform.gameObject.name == "RustedKey(Clone)")
@@ -80,11 +92,17 @@ public class MouseGetItem : MonoBehaviour
 
                     Destroy(hit.transform.gameObject);
                 }
+                else
+                {
+
+                }
                 if (hit.transform.gameObject.tag == "Interact")
                 {
                     if (hit.transform.gameObject.name == "PohonKertas")
                     {
+                        BM.changeBoolean(0);
                         go.SetActive(true);
+                        
                     }
                     if (hit.transform.gameObject.name == "Tuas")
                     {
@@ -126,6 +144,10 @@ public class MouseGetItem : MonoBehaviour
                     {
                         map.SetActive(true);
                     }
+                }
+                else
+                {
+
                 }
             }
         }

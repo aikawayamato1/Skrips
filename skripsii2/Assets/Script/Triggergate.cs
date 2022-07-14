@@ -11,6 +11,7 @@ public class Triggergate : MonoBehaviour
     public bool c;
     public bool d;
     public bool rusted;
+    public BookMenu BM;
     
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -45,7 +46,7 @@ public class Triggergate : MonoBehaviour
             }
             if(rusted==true)
             {
-
+                BM.changeBoolean(0);
                 Destroy(gameObject);
                 
             }

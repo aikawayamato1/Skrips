@@ -11,7 +11,7 @@ public class Prologue1_5Audio : MonoBehaviour
         AudioManager.PlayMusic("Backsound");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

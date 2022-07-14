@@ -6,34 +6,49 @@ using UnityEngine.UI;
 public class BookMenu : MonoBehaviour
 {
     public Button button;
+    
     private const int Size = 10;
+    public bool[] lockedpages = new bool[Size];
+    
     public int indexsize=4;
     public Text[] Paragraph=new Text[Size];
     int index=0;
     public void Next()
     {
-        Paragraph[index].gameObject.SetActive(false);
-        index++;
-        if(index>indexsize)
+        if(lockedpages[index]==false)
         {
-            index = 0;
+            if(index<indexsize)
+            {
+                Paragraph[index].gameObject.SetActive(false);
+                index++;
+
+                Paragraph[index].gameObject.SetActive(true);
+            }
+            
         }
-        Paragraph[index].gameObject.SetActive(true);
+        
 
     }
     public void Prev()
     {
-        Paragraph[index].gameObject.SetActive(false);
-        index--;
-        if (index < 0)
+        if(index>0)
         {
-            index = indexsize;
+            Paragraph[index].gameObject.SetActive(false);
+            index--;
+
+            Paragraph[index].gameObject.SetActive(true);
         }
-        Paragraph[index].gameObject.SetActive(true);
+            
+        
     }
     public int getIndex()
     {
         return index;
+    }
+    public void changeBoolean(int idx)
+    {
+        lockedpages[idx]= false;
+        Debug.Log("Unlocked");
     }
     public void open()
     {
