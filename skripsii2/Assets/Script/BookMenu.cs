@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BookMenu : MonoBehaviour
 {
+    public Button button;
     private const int Size = 10;
     public int indexsize=4;
     public Text[] Paragraph=new Text[Size];
@@ -34,8 +35,14 @@ public class BookMenu : MonoBehaviour
     {
         return index;
     }
+    public void open()
+    {
+        gameObject.SetActive(true);
+        button.enabled = false;
+    }
     public void Close()
     {
         gameObject.SetActive(false);
+        button.enabled = true;
     }
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private SpriteRenderer spr;
     public float speed=10f;
     float x;
     float y;
-    bool facingRight=true;
+    bool facingRight = true;
     public Rigidbody2D rb;
     public GameObject Book;
+    public Joystick joystick;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -20,8 +24,31 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Mover();
-        Facing();
         OpenBook();
+    }
+
+    private void FixedUpdate()
+    {
+        x = joystick.Horizontal;
+        y = joystick.Vertical;
+        if (x != 0)
+        {
+            rb.velocity = new Vector2(x * speed, y * speed);
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
+        }
+        if (x < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (x > 0 && !facingRight)
+        {
+            Flip();
+        }
     }
     private void Mover()
     {
@@ -29,26 +56,14 @@ public class Movement : MonoBehaviour
         y = Input.GetAxisRaw("Vertical");
         Vector3 moves = new Vector3(x , y,0);
         rb.velocity = moves * speed * Time.deltaTime;
-
-    }
-    void Facing()
-    {
-        if(x<0 && facingRight)
-        {
-            Flip();
-        }
-        if (x > 0 && !facingRight)
-        {
-            Flip();
-        }
     }
     void Flip()
     {
-        Vector2 CurrentScale = transform.localScale;
+        Vector2 CurrentScale = gameObject.transform.localScale;
         CurrentScale.x *= -1;
-        transform.localScale = CurrentScale;
+        gameObject.transform.localScale = CurrentScale;
         facingRight = !facingRight;
-    }
+    } 
     void OpenBook()
     {
         if(Input.GetKeyDown(KeyCode.B))
