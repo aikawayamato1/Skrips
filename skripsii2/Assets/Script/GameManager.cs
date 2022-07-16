@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
     public float scoreTime()
     {
-        return jumlahkata/(Maxtime - timeset);
+        return jumlahkata/((Maxtime - timeset)/60);
     }
     public void Winning()
     {

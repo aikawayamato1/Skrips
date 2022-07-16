@@ -33,7 +33,7 @@ public class ScoreCounter : MonoBehaviour
             Counting();
             ScorePop.SetActive(true);
         }
-        txt.text = "" + total.ToString();
+        txt.text = "" + total.ToString("0.0");
     }
     void Counting()
     {
