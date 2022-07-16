@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        Time.timeScale = 1;
         timeset = Maxtime;
     }
     void Update()
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         Win.SetActive(true);
         PlayerPrefs.SetFloat("ScoringTime",scoreTime());
+        PlayerPrefs.SetFloat("TimeSize", Maxtime - timeset);
+
         Time.timeScale = 0;
     }
     
