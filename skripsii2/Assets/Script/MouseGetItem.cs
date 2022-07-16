@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class MouseGetItem : MonoBehaviour
 {
-    Vector3 mousePos;
+    private Vector3 mousePos;
+    public bool barat=false;
+    public bool timur=false;
+    public bool utara=false;
+    public bool selatan=false;
+    public GameObject Gerbang;
+    public GameObject Notification;
     public GameObject[] gameobjects;
+    public GameManager game;
     public BookMenu BM;
     public GameObject Rustedkey;
+    public GameObject Keys;
     public int key = 1;
+    public int key2 = 1;
     public int totalkeyGet=0;
     public GateCon GC;
     public GameObject go;
@@ -18,10 +28,11 @@ public class MouseGetItem : MonoBehaviour
     public GameObject note3;
     public GameObject note4;
     public GameObject map;
+    private CanvasGroup CG;
     private const int SIZE = 10;
     public GameObject[] gm = new GameObject[SIZE];
     public ItemList il;
-    int index = 0;
+    private int index = 0;
     // Start is called before the first frame update
     void OnValidate()
     {
@@ -33,7 +44,7 @@ public class MouseGetItem : MonoBehaviour
     void Start()
     {
         gameobjects = new GameObject[10];
-
+        CG = Notification.GetComponent<CanvasGroup>();
         il = GameObject.Find("ItemList").GetComponent<ItemList>();
     }
 
@@ -89,7 +100,12 @@ public class MouseGetItem : MonoBehaviour
                         gm[0].SetActive(true);
                         index++;
                     }
-
+                    if (hit.transform.gameObject.name == "Keys" || hit.transform.gameObject.name == "Keys(Clone)")
+                    {
+                        gameobjects[index] = il.gameobjects[1];
+                        gm[1].SetActive(true);
+                        index++;
+                    }
                     Destroy(hit.transform.gameObject);
                 }
                 else
@@ -104,11 +120,21 @@ public class MouseGetItem : MonoBehaviour
                         go.SetActive(true);
                         
                     }
+                    if (hit.transform.gameObject.name == "PohonKunci")
+                    {
+
+                        if (key2 > 0)
+                        {
+                            Instantiate(Keys, ray.origin, Quaternion.identity);
+                            key2--;
+                        }
+
+                    }
                     if (hit.transform.gameObject.name == "Tuas")
                     {
                         if (GC.Gates() == true)
                         {
-                            Debug.Log("GameEnd");
+                            game.Winning();
                         }
                     }
                     if (hit.transform.gameObject.name == "bed")
@@ -128,7 +154,7 @@ public class MouseGetItem : MonoBehaviour
                     if (hit.transform.gameObject.name == "coretan2")
                     {
                         note2.SetActive(true);
-
+                        Debug.Log("Coretan");
                     }
                     if (hit.transform.gameObject.name == "Paper1")
                     {
@@ -140,9 +166,63 @@ public class MouseGetItem : MonoBehaviour
                         note4.SetActive(true);
 
                     }
+                    if (hit.transform.gameObject.name == "kertas3")
+                    {
+                        note4.SetActive(true);
+
+                    }
+                    if (hit.transform.gameObject.name == "kertas4")
+                    {
+                        note3.SetActive(true);
+
+                    }
                     if (hit.transform.gameObject.name == "Batu")
                     {
                         map.SetActive(true);
+                        BM.changeBoolean(1);
+                    }
+
+                    if (hit.transform.gameObject.name == "BatuBarat")
+                    {
+                        
+                        barat = true;
+                        
+                        Debug.Log("Pressed");
+                        CG.alpha = 1;
+                        
+
+
+                    }
+                    if (hit.transform.gameObject.name == "BatuUtara")
+                    {
+                        if (barat == true)
+                        {
+                            utara = true;
+                            Debug.Log("Pressed");
+                            CG.alpha = 1;
+                            
+                        }
+                    }
+                    if (hit.transform.gameObject.name == "BatuSelatan")
+                    {
+                        if (utara == true)
+                        {
+                            selatan = true;
+                            Debug.Log("Pressed");
+                            CG.alpha = 1;
+                            
+                        }
+                    }
+                    if (hit.transform.gameObject.name == "BatuTimur")
+                    {
+                        if (selatan == true)
+                        {
+                            timur = true;
+                            Debug.Log("Pressed");
+                            CG.alpha = 1;
+                            
+                            Gerbang.SetActive(true);
+                        }
                     }
                 }
                 else
@@ -151,5 +231,10 @@ public class MouseGetItem : MonoBehaviour
                 }
             }
         }
+        Fade();
+    }
+    private void Fade()
+    {
+        CG.alpha -= Time.deltaTime;
     }
 }

@@ -10,8 +10,10 @@ public class Triggergate : MonoBehaviour
     public bool b;
     public bool c;
     public bool d;
+    public bool SummonedGate;
     public bool rusted;
     public BookMenu BM;
+    public GameManager gm;
     
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -49,6 +51,10 @@ public class Triggergate : MonoBehaviour
                 BM.changeBoolean(0);
                 Destroy(gameObject);
                 
+            }
+            if(SummonedGate==true)
+            {
+                gm.Winning();
             }
         }
     }

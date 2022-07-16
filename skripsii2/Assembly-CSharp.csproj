@@ -91,6 +91,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Script\Prologue1_5Audio.cs" />
     <Compile Include="Assets\Script\PageNumber.cs" />
+    <Compile Include="Assets\Script\TriggerUnlock1.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Script\CameraFollowing.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
@@ -108,8 +109,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Script\TriggerUnlock1.cs" />
-    <Compile Include="Assets\Script\TriggerUnlock2.cs" />
+    <Compile Include="Assets\Script\Quiz.cs" />
+    <Compile Include="Assets\Script\ScoreCounter.cs" />
+    <Compile Include="Assets\Script\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

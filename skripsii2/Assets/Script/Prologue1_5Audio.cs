@@ -8,7 +8,7 @@ public class Prologue1_5Audio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.PlayMusic("Backsound");
+        AudioManager.PlayMusic("Theme");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
